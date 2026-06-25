@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendora Health — Visibilidad Digital para Salud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#030a0d;
+  --panel:rgba(255,255,255,0.025);
+  --panel-2:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.08);
+  --border-glow:rgba(0,229,255,0.45);
+  --teal:#00e5ff;
+  --teal-2:#37f3ff;
+  --teal-deep:#007a8a;
+  --text:#f0fafa;
+  --muted:rgba(240,250,250,0.58);
+  --muted-2:rgba(240,250,250,0.4);
+  --red:#ff4d6d;
+  --max:1180px;
+  --font:"Hanken Grotesk",sans-serif;
+  --mono:"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;position:relative;z-index:2}
+a{color:inherit;text-decoration:none}
+[id]{scroll-margin-top:80px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(3,10,13,.55);border-bottom:1px solid rgba(255,255,255,.05)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--teal-2),var(--teal-deep));display:grid;place-items:center;box-shadow:0 0 22px rgba(0,229,255,.5)}
+.logo .mark svg{width:18px;height:18px;color:#fff}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-size:14.5px;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;border-radius:999px;padding:11px 20px;cursor:pointer;border:none;transition:transform .2s,box-shadow .3s,background .2s;font-family:var(--font)}
+.btn svg{width:16px;height:16px}
+.btn-primary{background:linear-gradient(180deg,#37f3ff,#00a8bf);color:#030a0d;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 6px 20px -6px rgba(0,229,255,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,255,255,.12),0 10px 28px -8px rgba(0,229,255,.55)}
+.btn-ghost{background:rgba(255,255,255,.05);color:#fff;border:1px solid var(--border);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+
+/* HERO */
+.hero{position:relative;text-align:center;padding:120px 0 90px;overflow:hidden}
+.hero::before{content:"";position:absolute;left:50%;top:36%;transform:translate(-50%,-50%);width:1050px;height:720px;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,rgba(3,10,13,.8) 0%,rgba(3,10,13,.48) 40%,transparent 68%)}
+.stars{position:absolute;inset:-10% 0 0 0;z-index:0;pointer-events:none}
+.star{position:absolute;background:#fff;border-radius:50%;opacity:.5;animation:twinkle linear infinite}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.9}}
+.aurora{
+  position:absolute;left:50%;top:30%;transform:translate(-50%,-50%);
+  width:1150px;height:780px;z-index:0;pointer-events:none;
+  filter:blur(56px);
+  animation:auroraBreathe 7s ease-in-out infinite;
+}
+.beam{position:absolute;top:50%;left:50%;border-radius:50%;mix-blend-mode:screen}
+.beam1{width:980px;height:240px;background:linear-gradient(90deg,transparent,rgba(0,180,210,.72),transparent);animation:sway1 9s ease-in-out infinite}
+.beam2{width:920px;height:200px;background:linear-gradient(90deg,transparent,rgba(0,229,255,.60),transparent);animation:sway2 11s ease-in-out infinite}
+.beam3{width:1000px;height:160px;background:linear-gradient(90deg,transparent,rgba(0,140,180,.65),transparent);animation:sway3 10s ease-in-out infinite}
+.beam4{width:780px;height:130px;background:linear-gradient(90deg,transparent,rgba(55,243,255,.45),transparent);animation:sway2 13s ease-in-out infinite reverse}
+.aurora-core{position:absolute;top:50%;left:50%;width:520px;height:420px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(0,140,180,.28),transparent 65%)}
+@keyframes sway1{0%,100%{transform:translate(-60%,-48%) rotate(-30deg) scaleX(.95)}50%{transform:translate(-38%,-60%) rotate(-6deg) scaleX(1.3)}}
+@keyframes sway2{0%,100%{transform:translate(-40%,-44%) rotate(8deg) scaleX(1)}50%{transform:translate(-62%,-54%) rotate(34deg) scaleX(1.25)}}
+@keyframes sway3{0%,100%{transform:translate(-50%,-42%) rotate(-14deg) scaleX(1.1)}50%{transform:translate(-50%,-60%) rotate(10deg) scaleX(1.35)}}
+@keyframes auroraBreathe{0%,100%{opacity:.66}50%{opacity:.88}}
+.nebula{position:absolute;inset:0;animation:spin 20s linear infinite}
+.blob{position:absolute;border-radius:50%;mix-blend-mode:screen}
+.b1{width:300px;height:300px;left:430px;top:110px;background:radial-gradient(circle,rgba(0,229,255,.7),rgba(0,180,210,.4) 42%,transparent 66%);filter:blur(28px);animation:drift1 12s ease-in-out infinite}
+.b2{width:420px;height:440px;left:80px;top:250px;background:radial-gradient(circle,rgba(0,180,210,.4),transparent 64%);filter:blur(52px);animation:drift2 16s ease-in-out infinite}
+.b3{width:340px;height:300px;left:360px;top:350px;background:radial-gradient(circle,rgba(0,140,180,.5),transparent 60%);filter:blur(46px);animation:drift3 14s ease-in-out infinite}
+.b4{width:240px;height:240px;left:150px;top:90px;background:radial-gradient(circle,rgba(0,200,230,.45),transparent 60%);filter:blur(38px);animation:drift1 18s ease-in-out infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(46px,-34px) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-54px,32px) scale(1.18)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1.06)}50%{transform:translate(34px,44px) scale(.88)}}
+.morph{
+  position:absolute;left:50%;top:30%;z-index:0;pointer-events:none;
+  width:520px;height:520px;
+  background:radial-gradient(circle at 38% 34%,rgba(0,229,255,.4),rgba(0,180,210,.28) 52%,rgba(0,100,140,.14) 82%);
+  border-radius:62% 38% 55% 45% / 55% 52% 48% 45%;
+  filter:blur(24px);mix-blend-mode:screen;
+  transform:translate(-50%,-50%);
+  animation:morph 14s ease-in-out infinite, spin2 30s linear infinite;
+}
+@keyframes morph{
+  0%,100%{border-radius:62% 38% 55% 45% / 55% 52% 48% 45%}
+  25%{border-radius:42% 58% 38% 62% / 60% 42% 58% 40%}
+  50%{border-radius:55% 45% 62% 38% / 42% 58% 40% 60%}
+  75%{border-radius:48% 52% 45% 55% / 58% 45% 55% 42%}
+}
+@keyframes spin2{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero .wrap{display:flex;flex-direction:column;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#b0f8ff;background:rgba(0,229,255,.12);border:1px solid rgba(0,229,255,.4);padding:7px 14px;border-radius:999px;margin-bottom:80px;box-shadow:0 0 24px rgba(0,229,255,.2);animation:badgeGlow 2s ease-in-out infinite}
+@keyframes badgeGlow{0%,100%{box-shadow:0 0 18px rgba(0,229,255,.15);border-color:rgba(0,229,255,.35)}50%{box-shadow:0 0 52px rgba(0,229,255,.75);border-color:rgba(55,243,255,1)}}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--teal-2);box-shadow:0 0 10px var(--teal-2);animation:badgeDot 1.15s ease-in-out infinite}
+@keyframes badgeDot{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.45);box-shadow:0 0 22px var(--teal-2)}}
+h1.hero-title{
+  font-size:clamp(42px,7vw,86px);font-weight:800;line-height:1.04;letter-spacing:-.035em;
+  max-width:16ch;margin-bottom:30px;position:relative;z-index:1;text-shadow:0 2px 40px rgba(3,10,13,.6);
+}
+.grad{background:linear-gradient(120deg,#b0f8ff,#37f3ff 50%,#00c8e0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:58ch;margin-bottom:40px;line-height:1.72;position:relative;z-index:1}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:34px 0 0;position:relative;z-index:1}
+.hero-btns .btn{padding:14px 26px;font-size:15.5px}
+.hero-btns .btn-primary{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 6px 22px -6px rgba(0,229,255,.4);animation:ctaPulse 3.2s ease-in-out infinite}
+@keyframes ctaPulse{0%,100%{filter:drop-shadow(0 0 4px rgba(0,229,255,.15))}50%{filter:drop-shadow(0 0 12px rgba(0,229,255,.3))}}
+
+/* floating chips */
+.chip{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid var(--border);backdrop-filter:blur(10px);padding:9px 14px;border-radius:12px;font-size:13px;font-weight:500;box-shadow:0 10px 30px -10px rgba(0,0,0,.6);animation:float 6s ease-in-out infinite}
+.chip svg{width:15px;height:15px;color:var(--teal-2)}
+.chip .dot-live{width:7px;height:7px;border-radius:50%;background:#22d46a;box-shadow:0 0 8px #22d46a;animation:livePulse 1.4s ease-in-out infinite}
+.chip.c1{left:5%;top:30%;animation-delay:0s}
+.chip.c2{right:4%;top:25%;animation-delay:1.4s}
+.chip.c3{left:8%;top:58%;animation-delay:.8s}
+.chip.c4{right:6%;top:52%;animation-delay:2.1s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes livePulse{0%,100%{opacity:.4}50%{opacity:1}}
+@media(max-width:820px){.chip{display:none}}
+
+/* TYPEWRITER DEMO */
+.demo{position:relative;z-index:2;width:100%;max-width:540px;margin:72px auto 0;text-align:left;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  border:1px solid var(--border);border-radius:20px;overflow:hidden;
+  box-shadow:0 44px 100px -34px rgba(0,140,180,.5),0 0 0 1px rgba(255,255,255,.04);
+  backdrop-filter:blur(12px)}
+.demo-head{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+.demo-head .dots{display:flex;gap:6px}
+.demo-head .dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.16)}
+.demo-head .dots i:nth-child(1){background:#ff5f56}
+.demo-head .dots i:nth-child(2){background:#ffbd2e}
+.demo-head .dots i:nth-child(3){background:#27c93f}
+.demo-head .ttl{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;margin-left:4px}
+.demo-head .live{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-2)}
+.demo-head .live i{width:7px;height:7px;border-radius:50%;background:var(--teal-2);box-shadow:0 0 10px var(--teal-2);animation:livePulse 1.6s ease-in-out infinite}
+.demo-body{padding:20px 18px 22px}
+.demo-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);display:block;margin-bottom:9px}
+.demo-platform-row{display:flex;gap:.5rem;margin-bottom:14px;flex-wrap:wrap}
+.demo-platform{font-size:11px;font-weight:600;font-family:var(--mono);padding:.25rem .65rem;border-radius:999px;border:1px solid var(--border);color:var(--muted);transition:all .3s;letter-spacing:.04em}
+.demo-platform.active{border-color:var(--teal);color:var(--teal-2);background:rgba(0,229,255,.08);box-shadow:0 0 10px rgba(0,229,255,.2)}
+.demo-input{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:13px 14px;font-size:15px;font-weight:600;min-height:52px;line-height:1.4}
+.caret{display:inline-block;width:2px;height:18px;background:var(--teal-2);animation:blink 1s steps(1) infinite;margin-left:1px;vertical-align:middle}
+@keyframes blink{50%{opacity:0}}
+.demo-out{margin-top:14px}
+.out-list{display:flex;flex-direction:column;gap:9px}
+.out{opacity:0;transform:translateY(8px);transition:opacity .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1);display:flex;align-items:flex-start;gap:11px;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.45}
+.out.show{opacity:1;transform:none}
+.out.ai-resp{background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.2)}
+.out .tag{flex:none;font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--teal-2);padding-top:2px;min-width:36px}
+@media(max-width:560px){.demo{max-width:100%}}
+
+/* SECTION SHELL */
+section.block{padding:96px 0;position:relative}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-2);text-align:center;margin-bottom:16px;display:block}
+.eyebrow.left{text-align:left}
+h2.sec-title{font-size:clamp(32px,4.4vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.05;text-align:center;margin-bottom:18px}
+.sec-lead{text-align:center;color:var(--muted);font-size:17px;max-width:56ch;margin:0 auto 56px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:38px 0;margin-top:30px}
+.stat{text-align:center}
+.stat .num{font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-.03em;background:linear-gradient(120deg,#fff,#7ff8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lab{font-size:13px;color:var(--muted);margin-top:4px}
+@media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr);gap:30px}}
+
+/* SHIFT / PROBLEM */
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.prob-grid h2{text-align:left;margin-bottom:18px}
+.prob-copy p{color:var(--muted);font-size:16px;margin-bottom:18px;line-height:1.7}
+.prob-list{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.prob-item{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px 20px;font-weight:600;font-size:15px;transition:border-color .3s,transform .3s}
+.prob-item:hover{border-color:var(--border-glow);transform:translateY(-3px)}
+.prob-item .xi{flex:none;width:30px;height:30px;border-radius:8px;background:rgba(0,229,255,.10);border:1px solid rgba(0,229,255,.28);display:grid;place-items:center;color:#7ff8ff;box-shadow:0 0 14px rgba(0,229,255,.14)}
+.prob-item .xi svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:840px){.prob-grid{grid-template-columns:1fr;gap:36px}.prob-grid h2{text-align:center}}
+
+/* SERVICES LAYOUT */
+.services-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:3rem}
+@media(max-width:840px){.services-layout{grid-template-columns:1fr}}
+.steps{display:flex;flex-direction:column;gap:28px}
+.step{position:relative;display:flex;gap:20px;align-items:flex-start;padding:24px 28px;background:var(--panel);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:border-color .3s,transform .3s;cursor:pointer}
+.step.active{border-color:var(--border-glow);background:rgba(0,229,255,.04)}
+.step:hover{border-color:var(--border-glow);transform:translateX(4px)}
+.step .ghost-num{position:absolute;right:14px;top:-14px;font-size:120px;font-weight:900;color:rgba(255,255,255,.025);line-height:1}
+.step .n{flex:none;width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,rgba(0,229,255,.22),rgba(0,140,180,.10));border:1px solid rgba(0,229,255,.28);display:grid;place-items:center;font-weight:800;color:var(--teal-2);font-family:var(--mono);font-size:14px}
+.step-text h3{font-size:18px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+.step-text p{color:var(--muted);font-size:14px;line-height:1.6}
+
+/* GPT MOCK */
+.gpt-mock{position:sticky;top:100px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 44px 100px -34px rgba(0,140,180,.4),0 0 0 1px rgba(255,255,255,.04);backdrop-filter:blur(12px)}
+.gpt-head{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+.gpt-head .dots{display:flex;gap:6px}
+.gpt-head .dots i{width:10px;height:10px;border-radius:50%}
+.gpt-head .dots i:nth-child(1){background:#ff5f56}
+.gpt-head .dots i:nth-child(2){background:#ffbd2e}
+.gpt-head .dots i:nth-child(3){background:#27c93f}
+.gpt-head .ttl{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:4px}
+.gpt-body{padding:20px 18px 24px}
+.gpt-user-msg{display:flex;gap:10px;margin-bottom:20px;justify-content:flex-end}
+.gpt-user-bubble{background:rgba(0,229,255,.12);border:1px solid rgba(0,229,255,.2);border-radius:14px 14px 4px 14px;padding:10px 14px;font-size:13.5px;max-width:80%;line-height:1.5}
+.gpt-ai-msg{display:flex;gap:10px;align-items:flex-start}
+.gpt-ai-avatar{flex:none;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#10a37f,#1a7f64);display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;margin-top:2px}
+.gpt-ai-bubble{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13.5px;line-height:1.65;flex:1}
+.gpt-ai-bubble .highlight{color:var(--teal-2);font-weight:600}
+.gpt-ai-bubble .doc-card{margin-top:12px;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.18);border-radius:10px;padding:12px 14px}
+.gpt-ai-bubble .doc-card .doc-name{font-weight:700;font-size:14px;color:var(--text);margin-bottom:4px}
+.gpt-ai-bubble .doc-card .doc-meta{font-size:12px;color:var(--muted);font-family:var(--mono)}
+.gpt-ai-bubble .doc-card .doc-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.gpt-ai-bubble .doc-card .doc-tag{font-size:10px;font-family:var(--mono);padding:3px 8px;border-radius:999px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2);color:var(--teal-2)}
+.gpt-cursor{display:inline-block;width:2px;height:14px;background:var(--teal-2);animation:blink 1s steps(1) infinite;margin-left:2px;vertical-align:middle}
+
+/* BENTO TOOLS */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.card{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:22px;padding:28px;overflow:hidden;transition:border-color .3s,transform .3s,background .3s}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(0,229,255,.10),transparent 45%);opacity:0;transition:opacity .35s}
+.card:hover{border-color:var(--border-glow);transform:translateY(-4px)}
+.card:hover::before{opacity:1}
+.ico{width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,rgba(0,229,255,.18),rgba(0,140,180,.08));border:1px solid rgba(0,229,255,.24);display:grid;place-items:center;margin-bottom:20px;box-shadow:0 0 20px rgba(0,229,255,.14)}
+.ico svg{width:23px;height:23px;stroke:var(--teal-2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:19px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.card p{color:var(--muted);font-size:15px;line-height:1.55}
+.card.big{grid-column:span 3}
+.card.med{grid-column:span 3}
+.card.sm{grid-column:span 2}
+.card .pill-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.card .pill{font-size:11px;font-family:var(--mono);padding:.3rem .7rem;border-radius:999px;border:1px solid rgba(0,229,255,.22);color:var(--teal-2);background:rgba(0,229,255,.06)}
+@media(max-width:840px){.bento{grid-template-columns:1fr}.card.big,.card.med,.card.sm{grid-column:span 1}}
+
+/* STACK LOGOS */
+.stack-group{margin-top:3rem}
+.stack-group+.stack-group{margin-top:2rem}
+.stack-group-label{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--muted-2);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
+.stack-group-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.logo-row{display:flex;flex-wrap:wrap;gap:.65rem}
+.logo-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.5rem .9rem;font-size:.8rem;font-weight:500;color:rgba(240,250,250,.7);transition:border-color .2s,color .2s}
+.logo-pill:hover{border-color:var(--border-glow);color:var(--teal-2)}
+.logo-pill .pill-icon{font-family:var(--mono);font-size:.75rem;color:var(--teal-2)}
+
+/* LATAM / CREDENTIALS */
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.cred-copy h2{text-align:left;margin-bottom:18px}
+.cred-copy p{color:var(--muted);font-size:16px;line-height:1.75;margin-bottom:16px}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.feat{display:flex;align-items:flex-start;gap:12px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px 18px;font-weight:600;font-size:14px;transition:border-color .3s,transform .3s;line-height:1.4}
+.feat:hover{border-color:var(--border-glow);transform:translateY(-3px)}
+.feat .ck{flex:none;width:26px;height:26px;border-radius:8px;background:rgba(0,229,255,.12);display:grid;place-items:center}
+.feat .ck svg{width:15px;height:15px;stroke:var(--teal-2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:840px){.cred-grid{grid-template-columns:1fr;gap:32px}.cred-copy h2{text-align:center}}
+
+/* RESULTS */
+.result-block{background:rgba(0,229,255,.04);border:1px solid rgba(0,229,255,.18);border-radius:20px;padding:2.5rem;margin-top:3rem}
+.result-block .tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-2);margin-bottom:1rem;display:block}
+.result-block p{color:rgba(240,250,250,.75);font-size:15px;line-height:1.75}
+.results-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:2.5rem}
+.result-stat{flex:1;min-width:160px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:1.75rem;text-align:center;transition:border-color .3s,transform .3s}
+.result-stat:hover{border-color:var(--border-glow);transform:translateY(-3px)}
+.result-stat .num{font-size:2.4rem;font-weight:900;letter-spacing:-.03em;background:linear-gradient(120deg,#fff,#7ff8ff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:.35rem}
+.result-stat .lab{color:var(--muted);font-size:.82rem}
+
+/* WAITLIST */
+.waitlist-wrap{background:var(--navy2)}
+.waitlist-box{max-width:620px;margin:3.5rem auto 0;background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:3rem 2.5rem;text-align:center}
+.waitlist-box p{color:var(--muted);font-size:.95rem;margin-bottom:2rem;line-height:1.75}
+.avail-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.3);border-radius:999px;padding:.35rem 1rem;margin-bottom:1.5rem}
+.avail-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);animation:livePulse 2s infinite}
+.avail-badge span{color:var(--teal-2);font-size:.75rem;font-weight:600;letter-spacing:.06em;font-family:var(--mono)}
+.form-col{display:flex;flex-direction:column;gap:.85rem}
+.form-col input{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font);font-size:.95rem;padding:.85rem 1.1rem;outline:none;transition:border-color .2s;width:100%}
+.form-col input::placeholder{color:var(--muted-2)}
+.form-col input:focus{border-color:var(--teal)}
+.form-submit{background:linear-gradient(180deg,#37f3ff,#00a8bf);color:#030a0d;border:none;border-radius:999px;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 8px 28px -8px rgba(0,229,255,.8);font-family:var(--font);font-size:.95rem;font-weight:700;padding:.95rem 2rem;cursor:pointer;transition:transform .2s,box-shadow .2s;width:100%}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 14px 40px -8px rgba(0,229,255,.95)}
+.form-note{color:var(--muted-2);font-size:.75rem;margin-top:.85rem;font-family:var(--mono)}
+.success-msg{display:none;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.28);border-radius:10px;padding:1.5rem;color:var(--teal-2);font-size:.9rem;margin-top:1rem}
+
+/* FINAL CTA */
+.final{position:relative;padding:120px 0;text-align:center;overflow:hidden}
+.final .glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(0,180,210,.28),transparent 70%);filter:blur(40px);pointer-events:none}
+.final h2{font-size:clamp(32px,5vw,62px);font-weight:900;letter-spacing:-.03em;line-height:1.08;margin-bottom:20px;max-width:16ch;margin-left:auto;margin-right:auto}
+.final h2 .small{display:block;font-size:.55em;font-weight:600;color:var(--muted);letter-spacing:-.01em;margin-top:8px}
+.final p{color:var(--muted);font-size:17px;margin-bottom:36px}
+
+/* FOOTER */
+footer{padding:3rem 1.5rem;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:.82rem}
+.foot-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer .logo{font-size:1rem}
+
+@media(max-width:680px){.nav-links{display:none}.foot-inner{justify-content:center;text-align:center}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <div class="logo">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
+      </div>
+      Vendora <span style="color:var(--teal-2)">Health</span>
+    </div>
+    <div class="nav-links">
+      <a href="#problema">El cambio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#stack">Tecnología</a>
+      <a href="#nosotros">Nosotros</a>
+    </div>
+    <div class="nav-right">
+      <a href="#lista" class="btn btn-primary">Solicitar Acceso</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="stars" id="stars"></div>
+  <div class="aurora">
+    <div class="beam beam1"></div>
+    <div class="beam beam2"></div>
+    <div class="beam beam3"></div>
+    <div class="beam beam4"></div>
+    <div class="aurora-core"></div>
+  </div>
+  <div class="nebula">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+  </div>
+  <div class="morph"></div>
+
+  <!-- floating chips -->
+  <div class="chip c1">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></svg>
+    Google AI Overview ✓
+  </div>
+  <div class="chip c2">
+    <div class="dot-live"></div>
+    ChatGPT te recomienda
+  </div>
+  <div class="chip c3">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    +159% tráfico orgánico
+  </div>
+  <div class="chip c4">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4Z"/></svg>
+    Citado en Perplexity
+  </div>
+
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span> GEO · AEO · SEO para Salud</div>
+    <h1 class="hero-title">Cada día que la IA no lo recomienda, <span class="grad">su competencia cobra esa consulta.</span></h1>
+    <p class="hero-sub">La forma en que se busca atención médica cambió para siempre. Posicionamos profesionales y clínicas en Google, ChatGPT, Gemini y Perplexity — las nuevas salas de espera digitales.</p>
+    <div class="hero-btns">
+      <a href="#lista" class="btn btn-primary">Solicitar Acceso Prioritario <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a href="#problema" class="btn btn-ghost">Ver cómo funciona</a>
+    </div>
+
+    <!-- Live typewriter demo -->
+    <div class="demo">
+      <div class="demo-head">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <span class="ttl">Búsqueda con IA</span>
+        <div class="live"><i></i> En vivo</div>
+      </div>
+      <div class="demo-body">
+        <span class="demo-label">El paciente pregunta a la IA</span>
+        <div class="demo-platform-row">
+          <div class="demo-platform" id="pl-chatgpt">ChatGPT</div>
+          <div class="demo-platform" id="pl-gemini">Gemini</div>
+          <div class="demo-platform" id="pl-perplexity">Perplexity</div>
+          <div class="demo-platform" id="pl-claude">Claude</div>
+        </div>
+        <div class="demo-input"><span id="demoTyped"></span><span class="caret"></span></div>
+        <div class="demo-out">
+          <div class="out-list">
+            <div class="out ai-resp" id="out1">
+              <span class="tag">IA</span>
+              <span id="out1text"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- stats -->
+    <div class="stats reveal">
+      <div class="stat"><div class="num" data-count="159" data-suffix="%">0%</div><div class="lab">Crecimiento tráfico orgánico</div></div>
+      <div class="stat"><div class="num">✓</div><div class="lab">Citada en Google AI Overview</div></div>
+      <div class="stat"><div class="num">1°</div><div class="lab">Posición en respuestas de IA en su nicho</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="block" id="problema" style="scroll-margin-top:80px">
+  <div class="wrap">
+    <div class="prob-grid">
+      <div class="prob-copy reveal">
+        <span class="eyebrow left">El cambio que nadie está viendo</span>
+        <h2 class="sec-title" style="text-align:left">La búsqueda médica ya cambió. Para siempre.</h2>
+        <p>Antes, una persona buscaba "psiquiatra en Santiago". Hoy le pregunta a ChatGPT: <em style="color:var(--text)">"¿Qué médico trata el Alzheimer en adultos mayores y tiene horas disponibles este mes?"</em></p>
+        <p>Las IAs no muestran una lista. Evalúan fuentes, construyen contexto y <strong style="color:var(--teal-2)">recomiendan profesionales concretos</strong>. Si usted no está optimizado para ese mundo, simplemente no existe.</p>
+      </div>
+      <div class="prob-list reveal">
+        <p class="prob-list hint" style="font-size:1rem;font-weight:700;color:var(--text);margin-bottom:8px;">Sus pacientes hoy preguntan así:</p>
+        <div class="prob-item">
+          <div class="xi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+          "¿Qué oftalmólogo es el mejor para cirugía láser en Chile?"
+        </div>
+        <div class="prob-item">
+          <div class="xi"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          "¿Qué nutriólogo ayuda con resistencia a la insulina en Santiago?"
+        </div>
+        <div class="prob-item">
+          <div class="xi"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9"/></svg></div>
+          "¿Qué psiquiatra se especializa en TDAH adultos con hora disponible?"
+        </div>
+        <div class="prob-item">
+          <div class="xi"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          "¿Qué clínica tiene mejor servicio de urgencias pediátricas en Santiago?"
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="block" id="servicios" style="background:rgba(255,255,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <span class="eyebrow reveal">Lo que hacemos</span>
+    <h2 class="sec-title reveal">Visibilidad donde sus pacientes <span class="grad">realmente buscan</span></h2>
+    <p class="sec-lead reveal">Tres servicios integrados que trabajan juntos para que usted exista — y sea recomendado — en todos los canales donde se toman decisiones de salud hoy.</p>
+
+    <div class="services-layout reveal">
+      <!-- Columna izquierda: pasos -->
+      <div class="steps">
+        <div class="step active" onclick="setServiceStep(0)">
+          <div class="ghost-num">1</div>
+          <div class="n">01</div>
+          <div class="step-text">
+            <h3>Diagnóstico de Visibilidad</h3>
+            <p>Auditamos cómo aparece su marca en Google y en las principales IAs. Identificamos brechas, oportunidades y qué hace su competencia que usted no.</p>
+          </div>
+        </div>
+        <div class="step" onclick="setServiceStep(1)">
+          <div class="ghost-num">2</div>
+          <div class="n">02</div>
+          <div class="step-text">
+            <h3>Posicionamiento Orgánico</h3>
+            <p>Construimos contenido estructurado con E-E-A-T, schema y autoridad para que los algoritmos tradicionales y los LLMs entiendan y confíen en su sitio.</p>
+          </div>
+        </div>
+        <div class="step" onclick="setServiceStep(2)">
+          <div class="ghost-num">3</div>
+          <div class="n">03</div>
+          <div class="step-text">
+            <h3>Optimización GEO para IA</h3>
+            <p>Adaptamos su presencia digital para que ChatGPT, Gemini, Perplexity y Claude la interpreten, citen y recomienden ante preguntas de sus futuros pacientes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna derecha: mock ChatGPT animado -->
+      <div class="gpt-mock">
+        <div class="gpt-head">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <span class="ttl">ChatGPT</span>
+        </div>
+        <div class="gpt-body">
+          <div class="gpt-user-msg">
+            <div class="gpt-user-bubble" id="gptUserMsg">¿Dónde puedo hacer tratamiento de infertilidad en Viña del Mar?</div>
+          </div>
+          <div class="gpt-ai-msg">
+            <div class="gpt-ai-avatar">G</div>
+            <div class="gpt-ai-bubble">
+              <span id="gptAiText"></span><span class="gpt-cursor" id="gptCursor"></span>
+              <div class="doc-card" id="gptDocCard" style="display:none">
+                <div class="doc-name" id="gptDocName">Dr. Especialista en Rinoplastia</div>
+                <div class="doc-meta" id="gptDocMeta">Santiago · Cirugía Plástica · Verificado por IA</div>
+                <div class="doc-tags">
+                  <span class="doc-tag">E-E-A-T ✓</span>
+                  <span class="doc-tag">Schema ✓</span>
+                  <span class="doc-tag">GEO optimizado ✓</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK TECNOLÓGICO -->
+<section class="block" id="stack" style="scroll-margin-top:80px">
+  <div class="wrap">
+    <span class="eyebrow reveal">Tecnología que usamos</span>
+    <h2 class="sec-title reveal">Herramientas de clase mundial.<br>Aplicadas a salud.</h2>
+    <p class="sec-lead reveal">No trabajamos con suposiciones. Monitoreamos, medimos y optimizamos con el mismo stack que usan las agencias más avanzadas del mundo.</p>
+
+    <div class="bento reveal">
+      <div class="card big">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Monitoreo en IA</h3>
+        <p>Vemos en tiempo real en qué respuestas de ChatGPT, Gemini y Perplexity aparece su marca — y en cuáles debería aparecer.</p>
+        <div class="pill-row">
+          <span class="pill">Profound</span>
+          <span class="pill">AthenaHQ</span>
+          <span class="pill">Ahrefs Brand Radar</span>
+          <span class="pill">Semrush AIO</span>
+        </div>
+      </div>
+      <div class="card med">
+        <div class="ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3>SEO + GEO Integrado</h3>
+        <p>Combinamos análisis SEO clásico con optimización para LLMs — porque ambos canales traen pacientes hoy.</p>
+        <div class="pill-row">
+          <span class="pill">Semrush</span>
+          <span class="pill">Ahrefs</span>
+          <span class="pill">Moz</span>
+        </div>
+      </div>
+      <div class="card sm">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h3>Contenido Estructurado</h3>
+        <p>Schema.org, JSON-LD, FAQPage — estructura que los LLMs pueden leer y citar.</p>
+        <div class="pill-row">
+          <span class="pill">Writesonic GEO</span>
+          <span class="pill">JSON-LD</span>
+        </div>
+      </div>
+      <div class="card sm">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>IAs donde Posicionamos</h3>
+        <p>Pruebas manuales y automatizadas en las plataformas que sus pacientes ya usan.</p>
+        <div class="pill-row">
+          <span class="pill">ChatGPT</span>
+          <span class="pill">Gemini</span>
+          <span class="pill">Perplexity</span>
+          <span class="pill">Claude</span>
+        </div>
+      </div>
+      <div class="card sm">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4Z"/></svg></div>
+        <h3>Google AI Overview</h3>
+        <p>Optimizamos para aparecer en los featured snippets de IA que Google muestra primero en los resultados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCIA -->
+<section class="block" style="background:rgba(255,255,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <span class="eyebrow reveal">A quién ayudamos</span>
+    <h2 class="sec-title reveal">Profesionales y organizaciones <span class="grad">de salud</span></h2>
+
+    <div class="bento reveal" style="margin-top:3rem">
+      <div class="card big">
+        <h3 style="margin-bottom:1.25rem">Especialidades prioritarias</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Cirujanos Plásticos</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Dentistas y Ortodoncistas</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Psiquiatras</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Oftalmólogos</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Nutriólogos</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Psicólogos</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Dermatólogos</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Ginecólogos</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Traumatólogos</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Neurólogos</span>
+        </div>
+      </div>
+      <div class="card med">
+        <h3 style="margin-bottom:1.25rem">Organizaciones de salud</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Centros médicos</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Clínicas privadas</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Salud mental</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Centros oftalmológicos</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Nutrición y metabolismo</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Estética médica</span>
+          <span class="pill" style="font-size:.85rem;padding:.45rem .9rem">Salud integrativa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section class="block" id="nosotros" style="scroll-margin-top:80px">
+  <div class="wrap">
+    <div class="cred-grid">
+      <div class="cred-copy reveal">
+        <span class="eyebrow left">Quiénes somos</span>
+        <h2 class="sec-title">Un equipo con raíces en el sistema de salud</h2>
+        <p>No somos una agencia digital genérica que descubrió la salud como nicho.</p>
+        <p>Somos un equipo con más de dos décadas de experiencia directa en el sistema sanitario chileno — gestión clínica, administración hospitalaria, manejo de consultas médicas y comercialización de servicios de salud — combinada con expertise avanzado en Inteligencia Artificial y estrategia de contenido.</p>
+        <p>Entendemos cómo funciona el sector desde adentro. Eso nos permite construir estrategias de visibilidad que hablan el idioma de sus pacientes <em style="color:var(--teal-2)">y</em> el de los algoritmos.</p><p>Nuestro equipo técnico cuenta con experiencia como ITO, construcción de SaaS y sistemas HIS, RIS y LIS — infraestructura real de salud digital, no teoría.</p>
+      </div>
+      <div class="feat-grid reveal">
+        <div class="feat"><div class="ck"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>20+ años en sistema de salud chileno</div>
+        <div class="feat"><div class="ck"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>Gestión comercial de centros médicos y clínicas</div>
+        <div class="feat"><div class="ck"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>MBA + Máster en Gestión en Salud + Máster en IA Aplicada</div>
+        <div class="feat"><div class="ck"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>Pioneros GEO en salud LATAM</div>
+        <div class="feat"><div class="ck"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>IA generativa aplicada desde 2023</div>
+        <div class="feat"><div class="ck"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>Equipo 100% local, contexto 100% sanitario</div>
+        <div class="feat"><div class="ck"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>ITO + desarrollo de SaaS, HIS, RIS y LIS en salud</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section class="block" style="background:rgba(255,255,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <span class="eyebrow reveal">Caso de estudio real</span>
+    <h2 class="sec-title reveal">Resultados en el mundo real</h2>
+    <p class="sec-lead reveal">Aplicamos nuestras metodologías en proyectos propios relacionados con salud — con resultados medibles y verificables.</p>
+
+    <div class="results-row reveal">
+      <div class="result-stat"><div class="num" data-count="159" data-suffix="%">0%</div><div class="lab">Crecimiento tráfico orgánico</div></div>
+      <div class="result-stat"><div class="num">✓</div><div class="lab">Citada en Google AI Overview</div></div>
+      <div class="result-stat"><div class="num">1°</div><div class="lab">Posición en respuestas de IA en su nicho</div></div>
+    </div>
+
+    <div class="result-block reveal">
+      <span class="tag">Cómo lo logramos</span>
+      <p>Optimizamos la estructura, autoridad y contenido de una plataforma de salud para que pudiera ser interpretada correctamente por motores de búsqueda tradicionales y sistemas de IA. Como resultado, aumentó significativamente su visibilidad orgánica y comenzó a aparecer como fuente relevante en respuestas generadas por IA para consultas relacionadas con salud y especialistas médicos en Chile.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="block" id="lista" style="scroll-margin-top:80px">
+  <div class="wrap">
+    <span class="eyebrow reveal">Cupos limitados</span>
+    <h2 class="sec-title reveal">Solicitud de Acceso Prioritario</h2>
+    <div class="waitlist-box reveal">
+      <p>Trabajamos con un número limitado de profesionales y organizaciones de salud para garantizar implementación personalizada y de alta calidad. Evaluaremos su caso antes de aceptar nuevos clientes.</p>
+      <div class="avail-badge"><div class="dot"></div><span>2 cupos disponibles para julio</span></div>
+      <div class="form-col" id="waitlistForm">
+        <input type="text" id="nombre" placeholder="Nombre completo" />
+        <input type="text" id="especialidad" placeholder="Especialidad o tipo de centro" />
+        <input type="email" id="email" placeholder="Correo electrónico" />
+        <button class="form-submit" onclick="submitForm()">Solicitar Acceso Prioritario →</button>
+      </div>
+      <div class="success-msg" id="successMsg">✓ Hemos recibido su solicitud. Nos pondremos en contacto si existe una oportunidad adecuada para colaborar.</div>
+      <p class="form-note">No trabajamos con todas las solicitudes. Evaluamos cada caso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="glow"></div>
+  <div class="stars" id="stars2"></div>
+  <div class="wrap">
+    <h2 class="reveal">Sus pacientes ya están buscando.<span class="small">La pregunta es si lo van a encontrar a usted.</span></h2>
+    <p class="reveal">La visibilidad en IA no es el futuro. Es lo que está pasando ahora mismo.</p>
+    <a href="#lista" class="btn btn-primary reveal" style="font-size:15px;padding:14px 28px">Solicitar Acceso Prioritario <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-inner">
+    <div class="logo">
+      <div class="mark" style="width:28px;height:28px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
+      </div>
+      Vendora <span style="color:var(--teal-2)">Health</span>
+    </div>
+    <div>Visibilidad digital para profesionales y organizaciones de salud · Chile</div>
+  </div>
+</footer>
+
+<script>
+// starfield
+function makeStars(el,n){
+  for(let i=0;i<n;i++){
+    const s=document.createElement('span');
+    s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${Math.random()*3+2}s;animation-delay:${Math.random()*4}s`;
+    el.appendChild(s);
+  }
+}
+makeStars(document.getElementById('stars'),90);
+makeStars(document.getElementById('stars2'),50);
+
+// card spotlight
+document.querySelectorAll('.card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    c.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+});
+
+// scroll reveal
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((en,i)=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*0.07)+'s';io.observe(el);});
+
+// animated counters
+function animateCount(el){
+  const target=+el.dataset.count,prefix=el.dataset.prefix||'',suffix=el.dataset.suffix||'',dur=1400,start=performance.now();
+  function tick(now){
+    const p=Math.min((now-start)/dur,1),eased=1-Math.pow(1-p,3);
+    el.textContent=prefix+Math.round(eased*target)+suffix;
+    if(p<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const statObs=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{if(en.isIntersecting){en.target.querySelectorAll('[data-count]').forEach(animateCount);statObs.unobserve(en.target);}});
+},{threshold:.4});
+document.querySelectorAll('.stats,.results-row').forEach(el=>statObs.observe(el));
+
+// typewriter demo
+(function(){
+  const queries=[
+    {pl:'pl-chatgpt',q:'¿Quién coloca implantes mamarios con resultados naturales en Santiago?',r:'Solo aparecen quienes tienen presencia digital optimizada para IA. ¿Está usted entre ellos?'},
+    {pl:'pl-gemini',q:'¿Qué dentista hace carillas de porcelana con resultado natural en Santiago?',r:'La IA recomienda profesionales con contenido estructurado y autoridad digital verificada.'},
+    {pl:'pl-perplexity',q:'¿Dónde puedo hacer tratamiento de infertilidad en Viña del Mar?',r:'Los que aparecen respondieron estas preguntas en su sitio. Los demás, no existen para la IA.'},
+    {pl:'pl-claude',q:'¿Qué psiquiatra trata TDAH en adultos con horas disponibles?',r:'La visibilidad en IA no es el futuro. Está pasando ahora mismo.'},
+  ];
+  let qi=0;
+  const typedEl=document.getElementById('demoTyped');
+  const out1=document.getElementById('out1');
+  const out1text=document.getElementById('out1text');
+  const pls=['pl-chatgpt','pl-gemini','pl-perplexity','pl-claude'];
+  function setActive(id){pls.forEach(p=>{const el=document.getElementById(p);if(el)el.classList.toggle('active',p===id);});}
+  function typeQuery(item,done){
+    setActive(item.pl);
+    out1.classList.remove('show');
+    out1text.textContent='';
+    typedEl.textContent='';
+    let i=0;
+    const iv=setInterval(()=>{
+      if(i<item.q.length){typedEl.textContent=item.q.slice(0,++i);}
+      else{
+        clearInterval(iv);
+        setTimeout(()=>{
+          out1text.textContent=item.r;
+          out1.classList.add('show');
+          setTimeout(done,3000);
+        },500);
+      }
+    },40);
+  }
+  function loop(){typeQuery(queries[qi],()=>{qi=(qi+1)%queries.length;setTimeout(loop,700);});}
+  setTimeout(loop,900);
+})();
+
+// SERVICE STEPS
+const serviceScenarios = [
+  {
+    user: '¿Dónde puedo hacer tratamiento de infertilidad en Viña del Mar?',
+    ai: `Basado en información verificada, <span class="highlight">Clínica Origine</span> aparece como una de las opciones mejor posicionadas para tratamiento de infertilidad en la zona.`,
+    name: 'Clínica Origine · Medicina Reproductiva',
+    meta: 'Viña del Mar · Reproducción Asistida · Verificado por IA'
+  },
+  {
+    user: '¿Qué dentista hace carillas de porcelana con resultado natural en Santiago?',
+    ai: `Encontré información estructurada sobre <span class="highlight">Smile Estudio Dental</span>, que cuenta con contenido detallado sobre técnicas de carillas estéticas y casos verificados.`,
+    name: 'Smile Estudio Dental',
+    meta: 'Santiago · Odontología Estética · Verificado por IA'
+  },
+  {
+    user: '¿Quién coloca implantes mamarios con resultados naturales en Santiago?',
+    ai: `<span class="highlight">Dr. Rodrigo Guridi</span> aparece recomendada en múltiples fuentes verificadas para implantes mamarios con técnica de resultado natural en Santiago.`,
+    name: 'Dr. Rodrigo Guridi · Cirugía Plástica',
+    meta: 'Santiago · Cirugía Plástica · Verificado por IA'
+  }
+];
+
+let currentScenario = 0;
+let gptTyping = null;
+
+function setServiceStep(idx) {
+  document.querySelectorAll('.step').forEach((s,i) => s.classList.toggle('active', i===idx));
+  currentScenario = idx;
+  runGptMock(idx);
+}
+
+function runGptMock(idx) {
+  const s = serviceScenarios[idx];
+  const userMsg = document.getElementById('gptUserMsg');
+  const aiText = document.getElementById('gptAiText');
+  const docCard = document.getElementById('gptDocCard');
+  const docName = document.getElementById('gptDocName');
+  const docMeta = document.getElementById('gptDocMeta');
+  const cursor = document.getElementById('gptCursor');
+
+  if(gptTyping) clearInterval(gptTyping);
+  userMsg.textContent = s.user;
+  aiText.innerHTML = '';
+  docCard.style.display = 'none';
+  cursor.style.display = 'inline-block';
+
+  // Escribir caracter por caracter usando innerHTML para soportar spans
+  const fullText = s.ai;
+  let ci = 0;
+  let rendered = '';
+  let inTag = false;
+  gptTyping = setInterval(() => {
+    if(ci < fullText.length) {
+      const ch = fullText[ci];
+      if(ch === '<') inTag = true;
+      if(inTag) {
+        rendered += ch;
+        if(ch === '>') { inTag = false; }
+      } else {
+        rendered += ch;
+      }
+      aiText.innerHTML = rendered;
+      ci++;
+      if(inTag) { ci = fullText.indexOf('>', ci) + 1; rendered = fullText.slice(0, ci); inTag = false; aiText.innerHTML = rendered; }
+    } else {
+      clearInterval(gptTyping);
+      cursor.style.display = 'none';
+      docName.textContent = s.name;
+      docMeta.textContent = s.meta;
+      docCard.style.display = 'block';
+    }
+  }, 35);
+}
+
+// Auto-rotate service steps
+let stepIdx = 0;
+function autoRotateSteps() {
+  setServiceStep(stepIdx);
+  stepIdx = (stepIdx + 1) % 3;
+}
+setTimeout(() => {
+  runGptMock(0);
+  setInterval(autoRotateSteps, 5000);
+}, 1200);
+
+// form
+function submitForm(){
+  const n=document.getElementById('nombre').value.trim();
+  const e=document.getElementById('email').value.trim();
+  const es=document.getElementById('especialidad').value.trim();
+  if(!n||!e||!es){alert('Por favor complete todos los campos.');return;}
+  document.getElementById('waitlistForm').style.display='none';
+  document.getElementById('successMsg').style.display='block';
+  console.log({nombre:n,email:e,especialidad:es});
+}
+</script>
+</body>
+</html>
